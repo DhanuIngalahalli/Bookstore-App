@@ -1,0 +1,28 @@
+.signup-form {
+    display: flex;
+    flex-direction: column;
+    border: 2px solid #e0e2e6;
+    border-radius: 8px;
+    width: 350px;
+    height: 450px;
+    margin:4% auto;
+    padding: 37px 38px;
+    font-family:Roboto;
+    align-items: center;
+	justify-content: space-around;
+}
+.firstname,
+.email-id,
+.pwd,
+.phone-num{
+	width: 95%;
+    height: 35px;
+}
+.button{
+	background: #A03037 0% 0% no-repeat padding-box;
+	width: 100%;
+    border-radius: 2px;
+	opacity: 1;
+	flex-grow:0.1;
+	color: white;
+}
