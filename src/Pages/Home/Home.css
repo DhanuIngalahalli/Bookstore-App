@@ -1,0 +1,9 @@
+.main-container {
+    width: 150px;
+    margin-left:85px;
+  }
+  .Container {
+    display: flex;
+    justify-content: space-between;
+    cursor: pointer;
+  }
