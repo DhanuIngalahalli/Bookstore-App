@@ -7,8 +7,12 @@ class AxioService {
     Get(url,headers=false){
         return axios.get(url,headers)
     }
-    
-
+    Put(url,data,headers=false){
+        return axios.put(url, data,headers);
+    }
+    Delete(url,headers=false){
+        return axios.delete(url,headers)
+    }
 }
 
 export default AxioService;

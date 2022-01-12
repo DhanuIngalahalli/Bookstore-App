@@ -24,9 +24,23 @@ class UserService {
         console.log(headerConfig)
         return axiosService.Post(url,{},headerConfig);
     }
-   
-    
+    getCartItems(url) {
+        console.log(headerConfig)
+        return axiosService.Get(url, headerConfig);
+    }
+    CartItemQuantity(url,data){
+        return axiosService.Put(url,data, headerConfig);
+    }
+    RemoveItemFromCart(url){
+        return axiosService.Delete(url, headerConfig);
+    }
+    CustomerDetailsEdit(url,data){
+        return axiosService.Put(url,data, headerConfig);
+    }
+    takeOrder(url,data) {
+        return axiosService.Post(url,data,headerConfig);
+    }
 
-}
+   }
 
 export default UserService;

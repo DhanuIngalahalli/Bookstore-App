@@ -1,18 +1,18 @@
 .main-Container {
-	display: flex;
 	width: 100vw;
 	height: 100vh;
 	background-color: grey;
+	display: flex;
 	justify-content: center;
 }
 
-.first-Container{
-	display: flex;
+.Container1 {
 	align-self: center;
 	width: 700px;
-	height: 400px;
+	height: 391px;
 	background: #f5f5f5 0% 0% no-repeat padding-box;
-	border-radius: 20px;
+	border-radius: 21px;
+	display: flex;
 	justify-content: space-between;
 	
 }
@@ -26,24 +26,24 @@
 	height: 100%;
 	border-radius: 50%;
 }
-.image{
+.Image{
 	border-radius: 50%;
 }
-.text {
+.imgText {
 	font-weight: 600;
 	margin-top: 20px;
 	cursor: pointer;
 }
 
-.second-container{
+.formcontainer1{
 	background-color: #ffffff;
-	width: 500px;
+	width: 380px;
 	height: 420px;
 	position: relative;
 	top: -15px;
 	background: #ffffff 0% 0% no-repeat padding-box;
 	box-shadow: 0px 5px 15px #00000029;
-	border: 1px solid #cecbcb;
+	border: 1px solid #e4e4e4;
 	border-radius: 5px;
 	display: flex;
 	flex-direction: row;
@@ -51,26 +51,31 @@
 	align-items: center;
 }
 
-.third-container {
-	display: flex;
+.formcontainer2 {
 	width: 250px;
-	height: 400px;
-	justify-content: space-between;
-	flex-direction:column;
+    height: 450px;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    margin-right: 140px;
+	padding-bottom: 13px;
 }
 
-.Textform{
+.Textbox{
 	font-size: 20px;
 	font-weight: bold;
 	cursor: pointer;
+	margin-top:40px;
 }
 
-.login-text,
-.signup-text {
+.login-text, 
+.signup-text{
 	font-size: 20px;
 	font-weight: bold;
 	cursor: pointer;
 	padding-right: 83px;
+	margin-left:50px;
+	margin-top: 100px;
 }
 .LoginSignup-container {
 	height: 100%;

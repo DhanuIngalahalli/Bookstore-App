@@ -1,8 +1,9 @@
-import React from 'react'
-import Signup from '../Signup/Registration';
+import React from "react";
 import "./Page.css";
+import Login from "../Login/Login";
+import Signup from "../Signup/Registration";
+import Image from "../../Assets/Image.png";
 
-import Login from '../Login/Login';
 
 function Page() {
 const[update,setUpdate]=React.useState(true)
@@ -11,20 +12,21 @@ const handleOnClick = () => {
   setUpdate(!update);
   
 };
-    return (
-      <div>
-         <div className="main-Container">
-          <div className="first-Container">
-             <div className="Image-Container">
-              <img className="image" src={Image} width="245px"  height="245px" />
-               <div className="text">
-                   ONLINE BOOK SHOPPING
-              </div>
+  
+  return (
+    <div className="main-Container">
+      <div className="Container1">
+        <div className="Image-Container">
+            <img className="Image"
+              src={Image}
+              width="245px"
+              height="245px"
+            />
+          <div className="imgText">ONLINE BOOK SHOPPING</div>
         </div>
-        <div className="second-container">
-          <div className="third-container">
-          <div className="Textform"> 
-           <span
+        <div className="formcontainer1">
+          <div className="formcontainer2">
+          <div className="Textbox">  <span
                 className="login-text"
                 onClick={() => handleOnClick()}
               >
@@ -38,14 +40,13 @@ const handleOnClick = () => {
               </span>
             </div>
             <div className="LoginSignup-container">
-              {update ?<Login /> : <Signup />}
+              {update ? <Login /> : <Signup />}
             </div>
           </div>
         </div>
       </div>
-        </div>
-        </div>
-    );
+    </div>
+  );
 }
 
-export default Page
+export default Page;

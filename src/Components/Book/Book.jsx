@@ -6,38 +6,104 @@ import StarIcon from '@mui/icons-material/Star';
 import Typography from "@mui/material/Typography";
 import './Book.css';
 import UserService from "../../Service/UserService";
+import { useHistory } from "react-router-dom";
 const userService = new UserService();
 
 function Book(props) {
    const[addBook,setAddBook] = React.useState(false)
+   const [quantity, setQuantity] = React.useState(0);
+   const [cartItemId, setCartItemId] = React.useState("");
 
  console.log(props.book.book);
 
-  const handleHomePage = () => {
+  const handleState = () => {
     props.openBook(false)
 }
-  
 
 
-const bookId = (_id) =>{
 
-  userService.addToCart(`https://bookstore.incubation.bridgelabz.com/bookstore_user/add_cart_item/${_id}`)
+const bookId = (id) =>{
+  console.log(id);
+  userService.addToCart(`https://bookstore.incubation.bridgelabz.com/bookstore_user/add_cart_item/${id}`)
   .then((response) => {
+    displayCartItems()
     console.log(response);
-    
-    
   })
   .catch((error) => {
     console.error(error);
   });
-
-
 }
+const displayCartItems = () => {
+  userService.getCartItems("https://bookstore.incubation.bridgelabz.com/bookstore_user/get_cart_items")
+  .then((res) => {
+    console.log(res);
+    let filterArray = res.data.result.filter(function (cart) {
+      if (props.book.book._id === cart.product_id._id) {
+        setQuantity(cart.quantityToBuy);
+        setCartItemId(cart._id);
+        console.log(cart.product_id._id);
+        return cart;
+      }
+    });
+    console.log(filterArray);
+    setAddBook(filterArray);
+
+  })
+  .catch((error) => {
+    console.log(error);
+  });
+};
+
+const incrementCounter = (cartItemId) => {
+  
+  let data = {
+    "quantityToBuy": quantity + 1,
+  };
+  userService.CartItemQuantity(`https://bookstore.incubation.bridgelabz.com/bookstore_user/cart_item_quantity/${cartItemId}`, data)
+    .then((response) => {
+      console.log(response);
+     displayCartItems();
+    })
+    .catch((error) => {
+      console.error(error);
+    });
+};
+
+const decrementCounter= (cartItemId) => {
+  
+  let data = {
+    quantityToBuy: quantity - 1,
+  };
+  userService.CartItemQuantity(`https://bookstore.incubation.bridgelabz.com/bookstore_user/cart_item_quantity/${cartItemId}`,data)
+    .then((response) => {
+      console.log(response);
+      displayCartItems();
+
+    })
+    .catch((error) => {
+      console.error(error);
+    });
+};
+
+
+React.useEffect(() => {
+  displayCartItems();
+}, [quantity]);
+
+
 
  return (
     <div>
-      <h4 style={{ paddingRight:"500px" }} >
-        <span style={{ color: "gray"  }} onClick={handleHomePage}> Home/ </span> (Book 01)
+      <h4 style={{ paddingLeft:"50px" }} >
+        <span 
+        style={{ 
+          color: "gray" ,
+          cursor: "pointer",
+           }}
+            onClick={handleState}> 
+                   Home/ 
+            </span> 
+            (Book 01)
       </h4>
       <div className="Book-Container">
         <div className="Book-icons">
@@ -50,18 +116,68 @@ const bookId = (_id) =>{
               <div className="book-img"></div>
             </div>
             <div className="bookAddbuttons">
+            {addBook.length === 0 ? (
                 <Button
                  style={{
                     backgroundColor: "#A03037",
                     width: "100px",
                     height: "40px",
                   }}
-                  onClick={bookId}
+                  onClick={()=>bookId(props.book.book._id)}
                   variant="contained"
                 >
                   ADD TO BAG
                 </Button>
+                ) : (
+                  <div direction="row" spacing={1}>
+                  <button
+                    className="AddtobagMinusBtn"
+                    onClick={()=>decrementCounter(cartItemId)}
+                    id={props.book.book._id}
+                    
+                    style={{
+                      background: "#FAFAFA 0% 0% no-repeat padding-box",
+                      border: "2px solid #DBDBDB",
+                      width: "28px",
+                      height: "25px",
+                      opacity: "1",
+                      marginTop: "5px",
+                    }}
+                  >
+                    -
+                  </button>
+                  <button
+                    sx={{
+                      color: "black",
+                      fontSize: "15px",
+                      width: 40,
+                      height: 30,
+                      background: "#FAFAFA 0% 0% no-repeat padding-box",
+                      border: "1px solid #DBDBDB",
+                    }}
+                    variant="square"
+                  >
+                    {quantity}
+                  </button>
+                  <button
+                    id={props.book.book._id}
+                    className="AddtobagplusBtn"
+                    onClick={()=>incrementCounter(cartItemId)}
+                    id="plus"
+                    style={{
+                      width: "28px",
+                      height: "25px",
+                      background: "#FAFAFA 0% 0% no-repeat padding-box",
+                      border: "1px solid #DBDBDB",
+                      opacity: "1",
+                      marginTop: "2px",
+                    }}
+                  >
+                    +
+                  </button>
+                </div>)}
               <div>
+              
                 <Button style={{
                     backgroundColor: "black",
                     width: "100px",
@@ -78,24 +194,25 @@ const bookId = (_id) =>{
             <div className="bookNameText">
               <h2 >{props.book.book.bookName}book</h2>
             </div>
-            <div style={{ color: "gray" ,paddingRight:"450px" }}>{props.book.book.author}</div>
+            <div style={{ color: "gray" ,paddingRight:"470px"}}>{props.book.book.author}</div>
             <div>
               <span
                 style={{
                   backgroundColor: "green",
                   width: "60px",
                   color: "white",
+                  marginRight:"450px"
                 }}
               >
-                4.5*
+                4.3*
               </span>
-              <span style={{ color: "gray" }}>(30)</span>
+              <span style={{ color: "gray", marginRight:"450px" }}>(30)</span>
             </div>
             <div>
               <span style={{ width: "50px" }}>
                 <b>{props.book.book.price}</b>
               </span>
-              <del style={{ color: "gray" }}> Rs 1700</del>
+              <del style={{ color: "gray",  marginRight:"450px" }}> Rs 1700</del>
             </div>
 
             <div className="bookDetails" style={{ color: "gray" }}>
@@ -135,9 +252,9 @@ const bookId = (_id) =>{
                     Good book
                   </p>
                     <StarIcon style={{ color: '#FFCE00' }} />
-					<StarIcon style={{ color: '#FFCE00' }} />
-					<StarIcon style={{ color: '#FFCE00' }} />
-					<StarIcon style={{ color: '#FFCE00' }} />
+				          	<StarIcon style={{ color: '#FFCE00' }} />
+				          	<StarIcon style={{ color: '#FFCE00' }} />
+                    <StarBorderOutlinedIcon style={{ color: '#707070' }} />
                 </div>
               </div>
             </div>

@@ -1,0 +1,149 @@
+.my-Cart-Container {
+    display: flex;
+    flex-direction: column;
+    width: 777px;
+    height: 400px;
+    background: #ffffff 0% 0% no-repeat padding-box;
+    border: 1px solid #707070;
+    border-radius: 1px;
+    margin-left: 8%;
+    justify-content: space-between;
+   
+  }
+  
+  .address-Container {
+  display: flex;
+  width: 774px;
+  height: 100%;
+  min-height: 80px;
+  background: #ffffff 0% 0% no-repeat padding-box;
+  border: 1px solid #612c2c;
+  border-radius: 1px;
+  opacity: 1;
+  margin-top: 1%;
+  margin-left: 8%;
+  align-items: center;
+  flex-wrap: wrap;
+  }
+
+  .Order-Container{
+    display: flex;
+    width: 774px;
+    height: 100%;
+    min-height: 80px;
+    background: #ffffff 0% 0% no-repeat padding-box;
+    border: 1px solid #612c2c;
+    border-radius: 1px;
+    opacity: 1;
+    margin-top: 1%;
+    margin-left: 8%;
+    align-items: center;
+  }
+  .Location-content{
+    display: flex;
+    justify-content: space-between;
+    margin-left: 2%;
+    margin-right: 2%;
+  }
+  
+  .Location-text {
+    border: none;
+    font-size: medium;
+  }
+  .txt {
+    margin-left: 2%;
+    color: #707070;
+  }
+  
+  .bookImg-Details {
+    display: flex;
+    width: 536px;
+    height: 80px;
+    margin-left: 5%;
+    margin-bottom: 5%;
+    flex-direction: row;
+     
+  }
+  
+  .bookImgDiv {
+    width: 65px;
+    height:90px;
+    background: transparent url("../../Assets/bookimg\.png") 0% 0% no-repeat  padding-box;
+    background-size: 100%;
+    opacity: 1;
+  }
+  
+  .text {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    font: normal normal normal 14px/17px;
+    letter-spacing: 0px;
+    color: #0a0102;
+    opacity: 2;
+    margin-left: 25px;
+  }
+  
+  .place-Order-Button {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin-right: 2%;
+    margin-bottom: 2%;
+    margin-top: 3px;
+  }
+  .Remove-Cart-Items {
+    display: flex;
+    flex-direction: row;
+    margin-top: 8%;
+    cursor: pointer;
+    
+  
+  }
+  .substraction {
+    width: 20px;
+    height: 20px;
+    border: 1px solid gray;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+   
+  }
+  .value {
+    width: 30px;
+    height: 20px;
+    border: 1px solid gray;
+    display: flex;
+    justify-content: center;
+  }
+  .addition {
+    width: 20px;
+    height: 20px;
+    border: 1px solid gray;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+  }
+  .remove {
+    border: 1px solid gray;
+    margin-left: 15px;
+  }
+  
+  .order-Summery-Container {
+   
+    width: 100%;
+    /* height: 10px; */
+    margin-top: 10px;
+  }
+  
+  .order-txt {
+    margin-top: 5%;
+  }
+  .checkout-button {
+    display: flex;
+    justify-content: flex-end;
+    margin-right: 2%;
+    margin-bottom: 5%;
+  
+  }
+  
