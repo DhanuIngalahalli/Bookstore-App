@@ -2,10 +2,10 @@ import React from "react";
 import Cards from "../../Components/Cards/Cards";
 import Header from "../../Components/Header/Header";
 import './Home.css'
+import { connect } from 'react-redux';
+import { fetchBooks } from "../../Redux/BookActions";
 
-
-
-function Home() {
+function Home(dispatch) {
 
   return (
     <div>
@@ -23,4 +23,4 @@ function Home() {
     </div>
   );
 }
-export default Home;
+export default connect()(Home);

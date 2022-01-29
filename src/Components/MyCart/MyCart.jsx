@@ -11,17 +11,18 @@ import "./MyCart.css";
 import UserService from "../../Service/UserService";
 import Book from '../Book/Book';
 import CustomerDetails from '../../Pages/CustomerDetails/CustomerDetails';
-import Orderplaced from '../../Pages/Orderplaced/Orderplaced';
-
-
+import { useHistory } from "react-router-dom";
+import { connect } from 'react-redux';
+import { setCartItem } from '../../Redux/BookActions';
 
 const userService = new UserService();
 
-function MyCart() {
+function MyCart(props) {
 	  const [cartItems, setCartItems] = React.useState([]);
     const [showAddress, setShowAddress] = React.useState(false);
   	const [showOrder, setShowOrder] = React.useState(false);
     const [showButton, setShowButton] = React.useState(true);
+    const history = useHistory();
     
 
 	  React.useEffect(() => {
@@ -93,6 +94,7 @@ function MyCart() {
       .then((response) => {
         console.log(response.data.message);
         getAllCartItems();
+        props.dispatch(setCartItem(0));
       })
       .catch((err) => {
         console.warn(err);
@@ -109,34 +111,34 @@ function MyCart() {
     setShowOrder(!showOrder);
   };
 
+  
   const checkoutOrder = () => {
     let array_ordered_books = [];
 
-    cartItems.map((e) => {
+    cartItems.map((element) => {
       let orders = {
-        "product_id": e.id,
-        "product_name": e.product_id.bookName,
-        "product_quantity": e.quantityToBuy,
-        "product_price": e.product_id.price,
+        product_id: element._id,
+        product_name: element.product_id.bookName,
+        product_quantity: element.quantityToBuy,
+        product_price: element.product_id.price,
       };
-       return array_ordered_books.push(orders);
+      return array_ordered_books.push(orders);
     });
-  
 
-  let orderObj = {
-     orders:array_ordered_books,
+    let orderObj = {
+      orders: array_ordered_books,
+    };
+    userService
+      .takeOrder(
+        "https://bookstore.incubation.bridgelabz.com/bookstore_user/add/order",orderObj)
+      .then((response) => {
+        console.log(response.data.message, "order items", response.data.result);
+        history.push("/Home/Book/MyCart/Orderplaced");
+      })
+      .catch((err) => {
+        console.warn(err);
+      });
   };
-  userService
-       .takeOrder(
-         "https://bookstore.incubation.bridgelabz.com/bookstore_user/add/order",orderObj
-       )
-       .then((response) => {
-          console.log(response.data.message,"order items",response.data.result);
-       })
-       .catch((err) => {
-         console.warn(err);
-       });
-      };
 
 
 	return (
@@ -244,4 +246,4 @@ function MyCart() {
   
 }
 
-export default MyCart
+export default connect()(MyCart);

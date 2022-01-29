@@ -40,6 +40,17 @@ class UserService {
     takeOrder(url,data) {
         return axiosService.Post(url,data,headerConfig);
     }
+    AddToWishList(url) {
+        console.log(headerConfig)
+        return axiosService.Post(url,{},headerConfig);
+    }
+    getWishlistItems(url) {
+        console.log(headerConfig)
+        return axiosService.Get(url, headerConfig);
+    }
+    deleteWishlistItems(url){
+        return axiosService.Delete(url, headerConfig);
+    }
 
    }
 

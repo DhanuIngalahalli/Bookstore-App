@@ -7,12 +7,15 @@ import Typography from "@mui/material/Typography";
 import './Book.css';
 import UserService from "../../Service/UserService";
 import { useHistory } from "react-router-dom";
+import { connect } from 'react-redux';
+import { setCartItem } from '../../Redux/BookActions';
 const userService = new UserService();
 
 function Book(props) {
    const[addBook,setAddBook] = React.useState(false)
    const [quantity, setQuantity] = React.useState(0);
    const [cartItemId, setCartItemId] = React.useState("");
+   const [getWishlistId, setGetWishlistId] =React.useState([]);
 
  console.log(props.book.book);
 
@@ -34,6 +37,7 @@ const bookId = (id) =>{
   });
 }
 const displayCartItems = () => {
+  props.dispatch(setCartItem());
   userService.getCartItems("https://bookstore.incubation.bridgelabz.com/bookstore_user/get_cart_items")
   .then((res) => {
     console.log(res);
@@ -84,10 +88,40 @@ const decrementCounter= (cartItemId) => {
       console.error(error);
     });
 };
+const addToWishlist = (id) => {
+  userService.AddToWishList(`https://bookstore.incubation.bridgelabz.com/bookstore_user/add_wish_list/${id}`)
+     .then((response) => {
+       console.log(response);
+       displayWishlistItems();
+     })
+     .catch((error) => {
+       console.log(error);
+     });
+ };
+ const displayWishlistItems = () => {
+   userService.getWishlistItems("https://bookstore.incubation.bridgelabz.com/bookstore_user/get_wishlist_items")
+     .then((response) => {
+       console.log(response);
+       let WishlistArray = response.data.result.filter(function (
+         wishlist
+       ) {
+         if (props.book.book._id === wishlist.product_id._id) {
+           console.log(wishlist.product_id._id);
+           return wishlist;
+         }
+       });
+       setGetWishlistId(WishlistArray);
+     })
+     .catch((error) => {
+       console.log(error);
+     });
+ };
+   
 
 
 React.useEffect(() => {
   displayCartItems();
+  displayWishlistItems();
 }, [quantity]);
 
 
@@ -176,16 +210,33 @@ React.useEffect(() => {
                     +
                   </button>
                 </div>)}
-              <div>
-              
-                <Button style={{
+                <div>
+                {getWishlistId.length !== 0 ? (
+                <Button
+                  fullWidth
+                  style={{
+                    color: "black",
+                    borderColor: "#878787",
+                    marginBottom: "30px",
+                    width: "150px",
+                    height: "40px",
+                  }}
+                  variant="outlined"
+                >
+                  Added To Wishlist
+                </Button>
+              ) : (
+               <Button fullwidth style={{
                     backgroundColor: "black",
                     width: "100px",
                     height: "40px",
                   }}
-                  variant="contained">
+                  variant="contained"
+                  onClick={()=>addToWishlist(props.book.book._id)}
+                  >
                   WISHLIST
                 </Button>
+                )}
               </div>
             </div>
           </div>
@@ -262,7 +313,8 @@ React.useEffect(() => {
         </div>
       </div>
     </div>
+ 
     )
 }
 
-export default Book
+export default connect()(Book)

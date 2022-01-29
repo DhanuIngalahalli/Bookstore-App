@@ -1,20 +1,8 @@
 import React from 'react'
 import './Registration.css';
 import UserService from '../../Service/UserService';
-import { toast } from 'react-toastify';
 const userService = new UserService();
 
-toast.configure();
-
-const validName = /^([A-Z]{1,}[a-z]{2,}[ ]?){1,4}$/;
-
-const validEmail =
-	/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
-
-const validPassword =
-	/^(?=.*[A-Z])(?=.*[a-z])(?=[^!@#$%^&+=]*[!@#$%^&+=][^!@#$%^&+=]*$)(?=.*[0-9]).{8,}$/;
-
-const validMobileNumber = /^[789]\d{9}$/;
 
 function Registration() {
   const [userInfo, setUserInfo] = React.useState({

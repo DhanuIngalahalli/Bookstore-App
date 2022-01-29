@@ -1,18 +1,21 @@
 import React from "react";
 import UserService from "../../Service/UserService";
+import { connect } from "react-redux";
 import Book from "../Book/Book";
 import "./Cards.css";
+import { fetchBooks } from "../../Redux/BookActions";
 const userService = new UserService();
 
 
 
-export default function Cards() {
+ function Cards(props) {
   const [books, setBooks] = React.useState([]);
   const[select,setSelect] =React.useState(false);
   const[currentBook , setCurrentBook] = React.useState({});
 
   
   const getAllBooks = () => {
+    props.dispatch(fetchBooks())
     userService.getBooks("https://bookstore.incubation.bridgelabz.com/bookstore_user/get/book")
       .then((res) => {
         setBooks(res.data.result)
@@ -72,3 +75,13 @@ const changebookview =(book)=>{
     </div>
   );
 }
+
+const mapStateToProps = (state) => {
+	return {
+		books: state.bookReducer.books,
+	};
+};
+
+
+
+export default connect(mapStateToProps)(Cards)

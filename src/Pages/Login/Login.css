@@ -8,20 +8,23 @@
     padding: 38px 40px;
     font-family:Roboto;
     align-items: center;
-	justify-content: space-around;
+	justify-content: space-between;
     padding-top: 10px;
 }
 .email,
 .pwd {
 	height:40px;
 	width: 300px;
+    justify-content: space-between;
 }
+
+
 
 .login{
 	background: #A03037 0% 0% no-repeat padding-box;
 	border-radius: 2px;
     height:50px;
-	width: 310px;
+	width: 300px;
 	opacity: 1;
 	color: white;
 	cursor:pointer;
@@ -49,6 +52,7 @@
     background-color: #4266B2;
     width: 100px;
     margin-right: 100px;
+   
 
    
 }
@@ -64,6 +68,7 @@
     background-color: #ffffff;
     width: 100px;
     margin-right: 22px;
+  
 
 
 }

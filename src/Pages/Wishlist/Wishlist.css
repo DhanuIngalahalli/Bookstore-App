@@ -1,0 +1,99 @@
+.wishlist-main-container {
+    display: flex;
+    justify-content: center;
+    width: 100vw;
+    min-height: 80vh;
+}
+
+.container {
+   box-sizing: border-box;
+   width: 70%;
+   border-collapse: collapse;
+}
+
+.wish-list-heading {
+   box-sizing: border-box;
+   border: 1px solid #e7e5e5;
+   border-radius: 1px;
+   height: 50px;
+   width: 100%;
+   padding: 0 36px;
+   background-color: #fbfafa;
+   display: flex;
+   align-items: center;
+   text-align: left;
+   color: #0c0203;
+   font: 18px/24px 'Roboto';
+   font-weight: bold;
+}
+.wishlist-Book-Container {
+	padding: 46px 36px;
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	border: 1px solid #e4e4e4;
+	border-radius: 1px;
+	border-collapse: collapse;
+   
+}
+.Img-Info-Container {
+     width: 300px;
+     display: flex;
+     flex-direction: row;
+}
+.BookImg-Container {
+	width: 100px;
+	height: 100%;
+}
+.wishlistBookImg {
+	width: 65px;
+    background-image: url("../../Assets/bookimg\.png");
+    border: 1px solid red;
+	height: 85px;
+	background-repeat: no-repeat;
+	background-size: 100% 100%;
+}
+.BookInfo-Container {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
+}
+.BookName {
+	font: normal normal normal 19px/24px 'Roboto';
+	color: #0a0102;
+}
+
+.BookAuthor {
+	font: normal normal normal 13px/16px 'Roboto';
+	color: #9d9d9d;
+}
+.Book-Price-Container {
+	display: flex;
+	flex-direction: row;
+}
+.BookNewPrice {
+	color: #0e0203;
+	font: normal normal bold 15px/20px 'Roboto';
+	padding-right: 7px;
+}
+
+.BookOldPrice {
+	color: #9d9d9d;
+	font: normal normal normal 13px/16px 'Roboto';
+	align-self: center;
+	text-decoration: line-through;
+}
+.Buttons-Container {
+	display: flex;
+	justify-content: flex-end;
+	margin-top: 20px;
+}
+
+.remove-Btn {
+	justify-self: right;
+	justify-self: end;
+	color: #9d9d9d;
+	cursor: pointer;
+	height: 30px;
+}

@@ -56,3 +56,67 @@
     align-items: center;
     justify-content: space-between;
   }
+  .profile-icon {
+    margin-left:200px;
+  }
+  .popper-container {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    justify-content: space-between;
+    padding: 10px 5px;
+    margin-right: -50px;
+    background-color: #ffffff;
+    border: 2px solid transparent whitesmoke;
+    box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+
+  }
+  
+  .popper-heading {
+    color: #0a0102;
+    font: 13px/16px 'Roboto';
+    font-weight: bolder;
+    padding: 0 20px;
+    cursor: pointer;
+  }
+  
+  .popper-content {
+    display: flex;
+    font: 13px/18px 'Roboto';
+    padding: 3px 20px;
+    align-items: center;
+    color: #878787;
+    cursor: pointer;
+  }
+  
+  .popper-content:hover {
+    background-color: #a0303733;
+    color: #a03037;
+  }
+  
+  .popper-btn-container {
+    padding: 0 20px;
+  }
+  
+  .popper-btn-inner-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 23px;
+    width: 123px;
+    border: 1px solid #a03037;
+    border-radius: 2px;
+    cursor: pointer;
+  }
+  
+  .popper-btn-inner-container:hover {
+    background-color: #a0303733;
+  }
+  
+  .popper-btn {
+    color: #a03037;
+    font: 13px/18px 'Roboto';
+  }
+  
+
+ 
